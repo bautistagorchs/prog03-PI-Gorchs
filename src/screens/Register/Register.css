@@ -1,0 +1,81 @@
+.register-screen {
+  min-height: calc(100vh - 6rem);
+  padding: 2.5rem 1rem;
+  background: linear-gradient(180deg, #f4f7ff 0%, #dce7ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #d4ddf2;
+  box-shadow: 0 12px 28px rgba(14, 63, 169, 0.14);
+}
+
+.register-card h1 {
+  margin-bottom: 0.5rem;
+  color: #0e3fa9;
+}
+
+.register-card p {
+  margin-bottom: 2.5rem;
+  color: #4b5e88;
+}
+
+.register-card h1,
+.register-card p {
+  text-align: center;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.register-form label {
+  font-size: 0.95rem;
+  color: #1f3877;
+}
+
+.register-form input {
+  width: 100%;
+  height: 42px;
+  padding: 0 0.8rem;
+  letter-spacing: 1px;
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid #beccea;
+}
+
+.register-form input:focus {
+  border-color: #0e3fa9;
+  box-shadow: 0 0 0 3px rgba(14, 63, 169, 0.12);
+}
+
+.register-form button {
+  height: 44px;
+  margin-top: 0.8rem;
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffaa07;
+  cursor: pointer;
+  background-color: #0e3fa9;
+  border-radius: 8px;
+  border: none;
+}
+
+.register-form button:hover {
+  background-color: #123b93;
+}
+
+@media (max-width: 500px) {
+  .register-card {
+    padding: 1.4rem;
+  }
+}
