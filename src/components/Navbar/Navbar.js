@@ -32,15 +32,15 @@ const Navbar = () => {
               <a href="/login">Login</a>
             </li>
           </ul>
-          <form class="search-form" action="results.html" method="get">
+          <form className="search-form" action="results.html" method="get">
             <input
               type="text"
-              class=""
+              className=""
               name="searchData"
               placeholder="Buscar..."
-              value=""
+              // value=""
             />
-            <button type="submit" class="search-button">
+            <button type="submit" className="search-button">
               🔎
             </button>
           </form>

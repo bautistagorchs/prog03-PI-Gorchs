@@ -31,7 +31,7 @@ const Footer = () => {
         </a>
         {" | "}
         <a
-          href="https://developer.themoviedb.org/docs/getting-started"
+          href="https://developer.themoviedb.org/reference/getting-started"
           target="_blank"
           rel="noreferrer"
         >
