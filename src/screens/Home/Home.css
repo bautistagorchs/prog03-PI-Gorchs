@@ -1,0 +1,22 @@
+.home-screen {
+  width: 90%;
+  min-width: 100dvh;
+  margin: 1.5rem auto 2.5rem auto;
+}
+
+.home-screen h2 {
+  margin: 1rem 0;
+  color: #0e3fa9;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.carrousel {
+  height: 500px;
+  padding: 1rem 0 1.5rem 0;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}

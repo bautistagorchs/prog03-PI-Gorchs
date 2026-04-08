@@ -1,0 +1,36 @@
+.actor-card {
+  height: 100%;
+  width: 12%;
+  min-width: 180px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: linear-gradient(165deg, #ffffff 0%, #f4f7ff 100%);
+  border-radius: 14px;
+  border: 2px solid #0e3fa9;
+  box-shadow: 0 10px 22px rgba(14, 63, 169, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.actor-card .img-container {
+  overflow: hidden;
+}
+.actor-card .img-container img {
+  transition: all 0.5s ease;
+}
+
+.actor-card .img-container img:hover {
+  transform: scale(1.1);
+}
+
+.actor-card .content-container {
+  padding: 14px;
+  font-size: 14px;
+}
+.actor-card .content-container .title {
+  margin-bottom: 8px;
+  color: #0e3fa9;
+  font-size: 1rem;
+  font-weight: 800;
+}
