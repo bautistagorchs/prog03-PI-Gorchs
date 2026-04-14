@@ -7,6 +7,7 @@ class MediaCard extends Component {
 
     this.state = {
       showDescription: false,
+      mediaId: this.props.media.id,
     };
   }
 
@@ -16,7 +17,7 @@ class MediaCard extends Component {
   }
 
   render() {
-    const { movie } = this.props;
+    const { media } = this.props;
     return (
       <article className="media-card">
         <div
@@ -24,8 +25,8 @@ class MediaCard extends Component {
           id={this.state.showDescription ? "hide" : undefined}
         >
           <img
-            src={"https://image.tmdb.org/t/p/w342" + movie.poster_path}
-            alt={movie.title ? movie.title + " poster" : movie.name + " poster"}
+            src={"https://image.tmdb.org/t/p/w342" + media.poster_path}
+            alt={media.title ? media.title + " poster" : media.name + " poster"}
           />
         </div>
 
@@ -34,13 +35,15 @@ class MediaCard extends Component {
           id={this.state.showDescription ? "show" : undefined}
         >
           <div>
-            <h5 className="title">{movie.title ? movie.title : movie.name}</h5>
+            <h5 className="title">{media.title ? media.title : media.name}</h5>
           </div>
           {this.state.showDescription && (
             <div>
-              <p className="media-card-overview">{movie.overview}</p>
+              <p className="media-card-overview">
+                {media.overview.slice(0, 320)}
+              </p>
               <a
-                href="cuando cree la subpagina de detalle, agrego el link"
+                href={`/detail/${media.first_air_date ? `tv/` : `movie/`}${media.id}`}
                 className="to-details"
               >
                 Details

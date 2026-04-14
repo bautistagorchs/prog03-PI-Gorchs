@@ -37,11 +37,11 @@
 }
 
 .img-container#hide {
-  max-height: 20%;
+  max-height: 10%;
 }
 
 .media-card .content-container#show {
-  height: 80%;
+  height: 90%;
   border-bottom: none;
 }
 
