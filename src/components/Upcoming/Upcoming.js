@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MediaCard from "../MediaCard/MediaCard";
 
-class NowPlaying extends Component {
+class Upcoming extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class NowPlaying extends Component {
 
   componentDidMount() {
     const url =
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=2";
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=3";
     const options = {
       method: "GET",
       headers: {
@@ -28,7 +28,7 @@ class NowPlaying extends Component {
   }
   render() {
     return (
-      <section id="now-playing" className="carrousel">
+      <section id="upcoming" className="carrousel">
         {this.state.movies.map((movie, i) => (
           <MediaCard key={i} media={movie} />
         ))}
@@ -37,4 +37,4 @@ class NowPlaying extends Component {
   }
 }
 
-export default NowPlaying;
+export default Upcoming;

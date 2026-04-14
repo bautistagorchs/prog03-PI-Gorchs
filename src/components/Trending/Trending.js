@@ -31,7 +31,7 @@ class Trending extends Component {
     return (
       <section id="Trending" className="carrousel">
         {this.state.movies.map((movie, i) => (
-          <MediaCard key={i} movie={movie} />
+          <MediaCard key={i} media={movie} />
         ))}
       </section>
     );
