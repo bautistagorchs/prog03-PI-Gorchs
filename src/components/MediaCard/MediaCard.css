@@ -84,4 +84,6 @@
 .media-card-favorite {
   font-size: 1.25rem;
   line-height: 1;
+  border: none;
+  cursor: pointer;
 }

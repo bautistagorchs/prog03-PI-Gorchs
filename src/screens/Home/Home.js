@@ -4,11 +4,17 @@ import NowPlaying from "../../components/NowPlaying/NowPlaying";
 import Trending from "../../components/Trending/Trending";
 import AiringToday from "../../components/AiringToday/AiringToday";
 import PopularPeople from "../../components/PopularPeople/PopularPeople";
+import SearchForm from "../../components/SearchForm/SearchForm";
 
 class Home extends React.Component {
   render() {
     return (
       <main className="home-screen">
+        <div className="home-search">
+          <h2>Search</h2>
+          <SearchForm />
+        </div>
+
         <h2>Now Playing</h2>
         <NowPlaying />
 

@@ -4,7 +4,7 @@ import logo from "./logo_nobg.png";
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav className="navbar-container">
       <div className="content-container">
         <div className="logo">
           <a href="/">
@@ -32,7 +32,7 @@ const Navbar = () => {
               <a href="/login">Login</a>
             </li>
           </ul>
-          <form className="search-form" action="results.html" method="get">
+          {/* <form className="search-form" action="results.html" method="get">
             <input
               type="text"
               className=""
@@ -43,7 +43,7 @@ const Navbar = () => {
             <button type="submit" className="search-button">
               🔎
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>

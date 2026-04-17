@@ -15,6 +15,26 @@ class MediaCard extends Component {
     e.preventDefault();
     this.setState({ showDescription: !this.state.showDescription });
   }
+  toggleFavourite(id, mediaType) {
+    const favourites = localStorage.getItem("favourite_" + mediaType);
+    const favId = [id];
+    if (!favourites) {
+      localStorage.setItem("favourite_" + mediaType, JSON.stringify(favId));
+      this.setState({ isFav: true });
+      return;
+    }
+    const parsed = JSON.parse(favourites);
+
+    if (!parsed.includes(id)) {
+      parsed.push(id);
+      localStorage.setItem("favourite_" + mediaType, JSON.stringify(parsed));
+      this.setState({ isFav: true });
+      return;
+    }
+    const updated = parsed.filter((favId) => favId !== id);
+    localStorage.setItem("favourite_" + mediaType, JSON.stringify(updated));
+    this.setState({ isFav: false });
+  }
 
   render() {
     const { media } = this.props;
@@ -25,7 +45,10 @@ class MediaCard extends Component {
           id={this.state.showDescription ? "hide" : undefined}
         >
           <img
-            src={"https://image.tmdb.org/t/p/w342" + media.poster_path}
+            src={
+              "https://image.tmdb.org/t/p/w342" + media.poster_path ||
+              media.profile_path
+            }
             alt={media.title ? media.title + " poster" : media.name + " poster"}
           />
         </div>
@@ -57,9 +80,17 @@ class MediaCard extends Component {
             >
               {this.state.showDescription ? "Show less" : "Show more"}
             </button>
-            <a className="media-card-favorite" href="hola">
+            <button
+              className="media-card-favorite"
+              onClick={() =>
+                this.toggleFavourite(
+                  media.id,
+                  media.first_air_date ? "tv" : "movie",
+                )
+              }
+            >
               🩶
-            </a>
+            </button>
           </div>
         </div>
       </article>
