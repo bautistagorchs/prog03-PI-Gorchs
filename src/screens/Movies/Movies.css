@@ -3,3 +3,13 @@
   min-width: 100dvh;
   margin: 1.5rem auto 2.5rem auto;
 }
+
+.movies-screen h2 {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  color: #0e3fa9;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}

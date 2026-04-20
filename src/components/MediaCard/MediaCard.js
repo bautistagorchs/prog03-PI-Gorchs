@@ -8,9 +8,16 @@ class MediaCard extends Component {
     this.state = {
       showDescription: false,
       mediaId: this.props.media.id,
+      isFav: false,
     };
   }
 
+  componentDidMount() {
+    const { media } = this.props;
+    if (this.checkIsFav(media.id, media.first_air_date ? "tv" : "movie")) {
+      this.setState({ isFav: true });
+    }
+  }
   toggleDescription(e) {
     e.preventDefault();
     this.setState({ showDescription: !this.state.showDescription });
@@ -34,6 +41,15 @@ class MediaCard extends Component {
     const updated = parsed.filter((favId) => favId !== id);
     localStorage.setItem("favourite_" + mediaType, JSON.stringify(updated));
     this.setState({ isFav: false });
+  }
+
+  checkIsFav(id, mediaType) {
+    const favourites = localStorage.getItem("favourite_" + mediaType);
+    if (favourites) {
+      const parsed = JSON.parse(favourites);
+      return parsed.includes(id);
+    }
+    return false;
   }
 
   render() {
@@ -89,7 +105,7 @@ class MediaCard extends Component {
                 )
               }
             >
-              🩶
+              {this.state.isFav ? "❤️" : "🩶"}
             </button>
           </div>
         </div>

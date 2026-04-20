@@ -1,0 +1,8 @@
+.search-results-container {
+  width: 90%;
+  min-height: 100dvh;
+  margin: 1.5rem auto 2.5rem auto;
+}
+section.search-results {
+  height: 500px;
+}

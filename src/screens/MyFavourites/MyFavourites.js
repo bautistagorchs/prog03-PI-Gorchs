@@ -31,7 +31,7 @@ class MyFavourites extends Component {
       const parsedStorage = JSON.parse(storage);
       if (storage !== null) {
         const peliculas = [];
-
+        // eslint-disable-next-line
         parsedStorage.map((id) => {
           fetch(
             `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
@@ -52,7 +52,7 @@ class MyFavourites extends Component {
       const parsedStorage = JSON.parse(storage);
       if (storage !== null) {
         const tv = [];
-
+        // eslint-disable-next-line
         parsedStorage.map((id) => {
           fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
             .then((res) => res.json())

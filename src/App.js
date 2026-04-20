@@ -21,7 +21,10 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/series" component={Series} />
         <Route path="/favourites" component={MyFavourites} />
-        <Route path="/search-results" component={SearchResults} />
+        <Route
+          path="/search-results/:value/:mediaType"
+          component={SearchResults}
+        />
         <Route path="/detail/:mediaType/:id" component={MediaDetail} />
         <Route exact path="/" component={Home} />
         <Route path="*" component={NotFound} />

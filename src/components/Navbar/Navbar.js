@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import logo from "./logo_nobg.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -14,36 +15,24 @@ const Navbar = () => {
         <div className="links-container">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/movies">Movies</a>
+              <Link to="/movies">Movies</Link>
             </li>
             <li>
-              <a href="/series">Series</a>
+              <Link to="/series">Series</Link>
             </li>
             <li>
-              <a href="/favourites">Favourites</a>
+              <Link to="/favourites">Favourites</Link>
             </li>
             <li>
-              <a href="/register">Register</a>
+              <Link to="/register">Register</Link>
             </li>
             <li>
-              <a href="/login">Login</a>
+              <Link to="/login">Login</Link>
             </li>
           </ul>
-          {/* <form className="search-form" action="results.html" method="get">
-            <input
-              type="text"
-              className=""
-              name="searchData"
-              placeholder="Buscar..."
-              // value=""
-            />
-            <button type="submit" className="search-button">
-              🔎
-            </button>
-          </form> */}
         </div>
       </div>
     </nav>

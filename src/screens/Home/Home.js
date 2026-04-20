@@ -5,6 +5,7 @@ import Trending from "../../components/Trending/Trending";
 import AiringToday from "../../components/AiringToday/AiringToday";
 import PopularPeople from "../../components/PopularPeople/PopularPeople";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import { Link } from "react-router-dom";
 
 class Home extends React.Component {
   render() {
@@ -15,16 +16,27 @@ class Home extends React.Component {
           <SearchForm />
         </div>
 
-        <h2>Now Playing</h2>
+        <div className="sections-wrapper">
+          <h2>Now Playing</h2>
+          <Link to="/movies">See more</Link>
+        </div>
         <NowPlaying />
 
-        <h2>Popular People</h2>
+        <div className="sections-wrapper">
+          <h2>Popular People</h2>
+        </div>
         <PopularPeople />
 
-        <h2>Trending</h2>
+        <div className="sections-wrapper">
+          <h2>Trending</h2>
+          <Link to="/movies">See more</Link>
+        </div>
         <Trending />
 
-        <h2>Series Airing Today</h2>
+        <div className="sections-wrapper">
+          <h2>Series Airing Today</h2>
+          <Link to="/series">See more</Link>
+        </div>
         <AiringToday />
       </main>
     );
