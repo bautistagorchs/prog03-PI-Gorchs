@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./MediaDetail.css";
+import { Link } from "react-router-dom";
+
 class MediaDetail extends Component {
   constructor(props) {
     super(props);
@@ -107,7 +109,13 @@ class MediaDetail extends Component {
             </li>
           </ol>
           <div className="actions-container">
-            <button>Ver trailer</button>
+            <a
+              href={`https://www.youtube.com/results?search_query=${media.title || media.name}+trailer`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver trailer
+            </a>
             <button onClick={() => this.toggleFavourite(media.id, mediaType)}>
               {isFav ? "Remover de favoritos" : "Agregar a favoritos"}
             </button>

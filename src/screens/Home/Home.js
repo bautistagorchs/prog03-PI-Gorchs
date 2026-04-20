@@ -20,7 +20,7 @@ class Home extends React.Component {
           <h2>Now Playing</h2>
           <Link to="/movies">See more</Link>
         </div>
-        <NowPlaying />
+        <NowPlaying displayed={"home"} />
 
         <div className="sections-wrapper">
           <h2>Popular People</h2>
@@ -31,13 +31,13 @@ class Home extends React.Component {
           <h2>Trending</h2>
           <Link to="/movies">See more</Link>
         </div>
-        <Trending />
+        <Trending displayed={"home"} />
 
         <div className="sections-wrapper">
           <h2>Series Airing Today</h2>
           <Link to="/series">See more</Link>
         </div>
-        <AiringToday />
+        <AiringToday displayed={"home"} />
       </main>
     );
   }

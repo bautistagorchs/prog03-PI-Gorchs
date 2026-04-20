@@ -6,10 +6,7 @@ class Series extends React.Component {
   render() {
     return (
       <main className="series-screen">
-        <h2>Airing Today</h2>
         <AiringToday />
-
-        <h2>Top Rated</h2>
         <TopRated />
       </main>
     );

@@ -7,13 +7,8 @@ class Movies extends React.Component {
   render() {
     return (
       <main className="movies-screen">
-        <h2>Upcoming</h2>
         <Upcoming />
-
-        <h2>Now Playing</h2>
         <NowPlaying />
-
-        <h2>Trending</h2>
         <Trending />
       </main>
     );
