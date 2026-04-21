@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MediaCard from "../MediaCard/MediaCard";
+import Loader from "../Loader/Loader";
 
 const options = {
   method: "GET",
@@ -73,14 +74,18 @@ class AiringToday extends Component {
             />
           </form>
         </div>
-        <section id="airing-today" className="carrousel">
-          {filteredSeries.map((serie, i) => (
-            <MediaCard key={i} media={serie} />
-          ))}
-          <button className="load-more-btn" onClick={() => this.loadMore()}>
-            Load more
-          </button>
-        </section>
+        {filteredSeries.length === 0 ? (
+          <Loader />
+        ) : (
+          <section id="airing-today" className="carrousel">
+            {filteredSeries.map((serie, i) => (
+              <MediaCard key={i} media={serie} />
+            ))}
+            <button className="load-more-btn" onClick={() => this.loadMore()}>
+              Load more
+            </button>
+          </section>
+        )}
       </div>
     );
   }

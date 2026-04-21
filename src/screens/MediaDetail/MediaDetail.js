@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MediaDetail.css";
-import { Link } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 class MediaDetail extends Component {
   constructor(props) {
@@ -71,56 +71,66 @@ class MediaDetail extends Component {
     const { media, isFav } = this.state;
     return (
       <div className="media-detail-container">
-        <div className="section-left">
-          <div className="img-container">
-            <img
-              src={`https://image.tmdb.org/t/p/w342${media.poster_path}`}
-              alt={mediaType === "movie" ? media.title : media.name}
-            />
+        {media.id === undefined ? (
+          <div style={{ width: "100%", height: "100%" }}>
+            <Loader />
           </div>
-        </div>
-        <div className="section-right">
-          <h1>{mediaType === "movie" ? media.title : media.name}</h1>
-          <ol>
-            <li>
-              <strong>Calificación: </strong>
-              {media.vote_average}/10
-            </li>
-            <li>
-              <strong>Fecha de estreno: </strong>
-              {mediaType === "movie"
-                ? media.release_date
-                : media.first_air_date}
-            </li>
-            <li>
-              <strong>Duración: </strong>
-              {mediaType === "movie"
-                ? media.runtime
-                : media.episode_run_time}{" "}
-              minutos
-            </li>
-            <li>
-              <strong>Sinópsis: </strong>
-              {media.overview}
-            </li>
-            <li>
-              <strong>Género: </strong>
-              {media.genres?.map((genre) => genre.name).join(", ")}
-            </li>
-          </ol>
-          <div className="actions-container">
-            <a
-              href={`https://www.youtube.com/results?search_query=${media.title || media.name}+trailer`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver trailer
-            </a>
-            <button onClick={() => this.toggleFavourite(media.id, mediaType)}>
-              {isFav ? "Remover de favoritos" : "Agregar a favoritos"}
-            </button>
-          </div>
-        </div>
+        ) : (
+          <>
+            <div className="section-left">
+              <div className="img-container">
+                <img
+                  src={`https://image.tmdb.org/t/p/w342${media.poster_path}`}
+                  alt={mediaType === "movie" ? media.title : media.name}
+                />
+              </div>
+            </div>
+            <div className="section-right">
+              <h1>{mediaType === "movie" ? media.title : media.name}</h1>
+              <ol>
+                <li>
+                  <strong>Calificación: </strong>
+                  {media.vote_average}/10
+                </li>
+                <li>
+                  <strong>Fecha de estreno: </strong>
+                  {mediaType === "movie"
+                    ? media.release_date
+                    : media.first_air_date}
+                </li>
+                <li>
+                  <strong>Duración: </strong>
+                  {mediaType === "movie"
+                    ? media.runtime
+                    : media.episode_run_time}{" "}
+                  minutos
+                </li>
+                <li>
+                  <strong>Sinópsis: </strong>
+                  {media.overview}
+                </li>
+                <li>
+                  <strong>Género: </strong>
+                  {media.genres?.map((genre) => genre.name).join(", ")}
+                </li>
+              </ol>
+              <div className="actions-container">
+                <a
+                  href={`https://www.youtube.com/results?search_query=${media.title || media.name}+trailer`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver trailer
+                </a>
+                <button
+                  onClick={() => this.toggleFavourite(media.id, mediaType)}
+                >
+                  {isFav ? "Remover de favoritos" : "Agregar a favoritos"}
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     );
   }

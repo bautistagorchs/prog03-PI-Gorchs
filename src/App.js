@@ -11,6 +11,7 @@ import MyFavourites from "./screens/MyFavourites/MyFavourites";
 import NotFound from "./screens/NotFound/Notfound";
 import SearchResults from "./screens/SearchResults/SearchResults";
 import Register from "./screens/Register/Register";
+import Login from "./screens/Login/Login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Switch>
         <Route path="/movies" component={Movies} />
         <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
         <Route path="/series" component={Series} />
         <Route path="/favourites" component={MyFavourites} />
         <Route

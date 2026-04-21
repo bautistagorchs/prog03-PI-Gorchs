@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MediaCard from "../../components/MediaCard/MediaCard";
 import "./MyFavourites.css";
+import Loader from "../../components/Loader/Loader";
 
 const options = {
   method: "GET",
@@ -16,6 +17,8 @@ class MyFavourites extends Component {
     this.state = {
       favouriteMovies: [],
       favouriteTv: [],
+      loadingMovies: true,
+      loadingTv: true,
     };
   }
 
@@ -27,6 +30,10 @@ class MyFavourites extends Component {
   handleMovieFavourites() {
     const storage = localStorage.getItem("favourite_movie");
 
+    if (storage === null) {
+      this.setState({ loadingMovies: false });
+      return;
+    }
     if (storage !== null) {
       const parsedStorage = JSON.parse(storage);
       if (storage !== null) {
@@ -39,7 +46,12 @@ class MyFavourites extends Component {
           )
             .then((res) => res.json())
             .then((json) => peliculas.push(json))
-            .then(() => this.setState({ favouriteMovies: peliculas }))
+            .then(() =>
+              this.setState({
+                favouriteMovies: peliculas,
+                loadingMovies: false,
+              }),
+            )
             .catch((err) => console.error(err));
         });
       }
@@ -57,7 +69,7 @@ class MyFavourites extends Component {
           fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
             .then((res) => res.json())
             .then((json) => tv.push(json))
-            .then(() => this.setState({ favouriteTv: tv }))
+            .then(() => this.setState({ favouriteTv: tv, loadingTv: false }))
             .catch((err) => console.error(err));
         });
       }
@@ -69,19 +81,47 @@ class MyFavourites extends Component {
       <section className="favourites-page">
         <h1>My Favourites</h1>
 
-        <h2>Movies</h2>
-        <section className="carrousel">
-          {this.state.favouriteMovies.map((movie) => (
-            <MediaCard key={movie.id} media={movie} mediaType="movie" />
-          ))}
-        </section>
+        {this.state.loadingMovies ? (
+          <Loader />
+        ) : (
+          <>
+            {this.state.favouriteMovies.length === 0 ? (
+              <p style={{ fontSize: "1.2rem", paddingLeft: "1rem" }}>
+                You haven't added any favourite movies yet.
+              </p>
+            ) : (
+              <>
+                <h2>Movies</h2>
+                <section className="carrousel">
+                  {this.state.favouriteMovies.map((movie) => (
+                    <MediaCard key={movie.id} media={movie} mediaType="movie" />
+                  ))}
+                </section>
+              </>
+            )}
+          </>
+        )}
 
-        <h2>Series</h2>
-        <section className="carrousel">
-          {this.state.favouriteTv.map((tv) => (
-            <MediaCard key={tv.id} media={tv} mediaType="tv" />
-          ))}
-        </section>
+        {this.state.loadingTv ? (
+          <Loader />
+        ) : (
+          <>
+            {this.state.favouriteTv.length === 0 ? (
+              <p style={{ fontSize: "1.2rem", paddingLeft: "1rem" }}>
+                You haven't added any favourite series yet.
+              </p>
+            ) : (
+              <>
+                <h2>Series</h2>
+                <section className="carrousel">
+                  {this.state.favouriteTv.map((tv) => (
+                    <MediaCard key={tv.id} media={tv} mediaType="tv" />
+                  ))}
+                </section>
+              </>
+            )}
+          </>
+        )}
       </section>
     );
   }
