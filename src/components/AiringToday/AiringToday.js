@@ -79,7 +79,7 @@ class AiringToday extends Component {
         ) : (
           <section id="airing-today" className="carrousel">
             {filteredSeries.map((serie, i) => (
-              <MediaCard key={i} media={serie} />
+              <MediaCard key={i} media={serie} loggedIn={this.props.loggedIn} />
             ))}
             <button className="load-more-btn" onClick={() => this.loadMore()}>
               Load more

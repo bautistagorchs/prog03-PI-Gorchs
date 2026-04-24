@@ -23,10 +23,7 @@ class PopularPeople extends Component {
 
     fetch(url, options)
       .then((res) => res.json())
-      .then(
-        (json) => this.setState({ people: json.results }),
-        // console.log(json.results),
-      )
+      .then((json) => this.setState({ people: json.results }))
       .catch((err) => console.error(err));
   }
   render() {

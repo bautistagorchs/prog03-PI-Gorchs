@@ -79,7 +79,7 @@ class NowPlaying extends Component {
         ) : (
           <section id="now-playing" className="carrousel">
             {filteredMovies.map((movie, i) => (
-              <MediaCard key={i} media={movie} />
+              <MediaCard key={i} media={movie} loggedIn={this.props.loggedIn} />
             ))}
             <button className="load-more-btn" onClick={() => this.loadMore()}>
               Load more

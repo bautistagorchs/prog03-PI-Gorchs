@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./MediaDetail.css";
 import Loader from "../../components/Loader/Loader";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 class MediaDetail extends Component {
   constructor(props) {
@@ -9,6 +12,7 @@ class MediaDetail extends Component {
     this.state = {
       media: {},
       isFav: false,
+      isLoggedIn: false,
     };
   }
 
@@ -34,6 +38,11 @@ class MediaDetail extends Component {
       })
 
       .catch((err) => console.error(err));
+    const loggedUser = cookies.get("loggedUser");
+
+    if (loggedUser) {
+      this.setState({ isLoggedIn: true });
+    }
   }
 
   checkIsFav(id, mediaType) {
@@ -124,6 +133,7 @@ class MediaDetail extends Component {
                 </a>
                 <button
                   onClick={() => this.toggleFavourite(media.id, mediaType)}
+                  style={{ display: this.state.isLoggedIn ? "block" : "none" }}
                 >
                   {isFav ? "Remover de favoritos" : "Agregar a favoritos"}
                 </button>

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import MediaCard from "../../components/MediaCard/MediaCard";
 import "./MyFavourites.css";
 import Loader from "../../components/Loader/Loader";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const options = {
   method: "GET",
@@ -23,6 +26,12 @@ class MyFavourites extends Component {
   }
 
   componentDidMount() {
+    const loggedUser = cookies.get("loggedUser");
+
+    if (loggedUser) {
+      this.props.history.push("/");
+    }
+
     this.handleMovieFavourites();
     this.handleTvFavourites();
   }

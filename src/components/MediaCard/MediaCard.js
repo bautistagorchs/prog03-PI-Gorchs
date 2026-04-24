@@ -104,6 +104,7 @@ class MediaCard extends Component {
                   media.first_air_date ? "tv" : "movie",
                 )
               }
+              style={{ display: this.props.loggedIn ? "block" : "none" }}
             >
               {this.state.isFav ? "❤️" : "🩶"}
             </button>

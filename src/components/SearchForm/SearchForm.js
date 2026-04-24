@@ -12,7 +12,6 @@ class SearchForm extends Component {
 
   updateInputValues(e) {
     this.setState({ searchValue: e.target.value });
-    console.log(this.state.searchValue);
   }
 
   updateSelectOptions(e) {

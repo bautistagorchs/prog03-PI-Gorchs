@@ -80,7 +80,7 @@ class Trending extends Component {
         ) : (
           <section id="Trending" className="carrousel">
             {filteredMovies.map((movie, i) => (
-              <MediaCard key={i} media={movie} />
+              <MediaCard key={i} media={movie} loggedIn={this.props.loggedIn} />
             ))}
             <button className="load-more-btn" onClick={() => this.loadMore()}>
               Load more
