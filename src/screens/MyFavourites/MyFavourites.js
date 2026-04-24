@@ -22,14 +22,17 @@ class MyFavourites extends Component {
       favouriteTv: [],
       loadingMovies: true,
       loadingTv: true,
+      isLoggedIn: false,
     };
   }
 
   componentDidMount() {
     const loggedUser = cookies.get("loggedUser");
 
-    if (loggedUser) {
+    if (!loggedUser) {
       this.props.history.push("/");
+    } else {
+      this.setState({ isLoggedIn: true });
     }
 
     this.handleMovieFavourites();
@@ -103,7 +106,12 @@ class MyFavourites extends Component {
                 <h2>Movies</h2>
                 <section className="carrousel">
                   {this.state.favouriteMovies.map((movie) => (
-                    <MediaCard key={movie.id} media={movie} mediaType="movie" />
+                    <MediaCard
+                      key={movie.id}
+                      media={movie}
+                      mediaType="movie"
+                      loggedIn={this.state.isLoggedIn}
+                    />
                   ))}
                 </section>
               </>
@@ -124,7 +132,12 @@ class MyFavourites extends Component {
                 <h2>Series</h2>
                 <section className="carrousel">
                   {this.state.favouriteTv.map((tv) => (
-                    <MediaCard key={tv.id} media={tv} mediaType="tv" />
+                    <MediaCard
+                      key={tv.id}
+                      media={tv}
+                      mediaType="tv"
+                      loggedIn={this.state.isLoggedIn}
+                    />
                   ))}
                 </section>
               </>

@@ -1,7 +1,7 @@
 .login-screen {
   min-height: calc(
-    100vh - 6rem
-  ); /* Este cálculo es por que la navbar tiene un height de 6 rem */
+    100vh - 12rem
+  ); /* Este cálculo es por que la navbar tiene un height de 6 rem y el footer tambien */
   padding: 2.5rem 1rem;
   background: linear-gradient(180deg, #f4f7ff 0%, #dce7ff 100%);
   display: flex;

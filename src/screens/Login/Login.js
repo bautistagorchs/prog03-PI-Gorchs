@@ -44,7 +44,8 @@ class Login extends Component {
         const passwordsMatch = password === userExists[0].password;
 
         if (passwordsMatch) {
-          cookies.set("loggedUser", email);
+          // comentario sobre el seteo de path en cookies en la linea 26 del archivo Navbar.js
+          cookies.set("loggedUser", email, { path: "/" });
           this.props.history.push("/");
         } else return alert("La contraseña es incorrecta");
       } else {

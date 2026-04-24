@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import MediaCard from "../../components/MediaCard/MediaCard";
 import "./SearchResults.css";
+import Cookies from "universal-cookie";
+import Loader from "../../components/Loader/Loader";
+
+const cookies = new Cookies();
 
 class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchResults: [],
+      loading: true,
+      isLoggedIn: false,
     };
   }
 
   componentDidMount() {
+    const loggedUser = cookies.get("loggedUser");
+    if (loggedUser) {
+      this.setState({ isLoggedIn: true });
+    }
+
     const { value, mediaType } = this.props.match.params;
 
     const url = `https://api.themoviedb.org/3/search/${mediaType}?query=${value}&include_adult=false&language=en-US&page=1`;
@@ -25,7 +36,9 @@ class SearchResults extends Component {
 
     fetch(url, options)
       .then((res) => res.json())
-      .then((json) => this.setState({ searchResults: json.results }))
+      .then((json) =>
+        this.setState({ searchResults: json.results, loading: false }),
+      )
       .catch((err) => console.error(err));
   }
 
@@ -33,11 +46,19 @@ class SearchResults extends Component {
     return (
       <div className="search-results-container">
         <h1>Resultados de busqueda</h1>
-        <section className="carrousel search-results">
-          {this.state.searchResults.map((result, i) => (
-            <MediaCard media={result} key={i} />
-          ))}
-        </section>
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <section className="carrousel search-results">
+            {this.state.searchResults.map((result, i) => (
+              <MediaCard
+                media={result}
+                key={i}
+                loggedIn={this.state.isLoggedIn}
+              />
+            ))}
+          </section>
+        )}
       </div>
     );
   }

@@ -23,9 +23,20 @@ class Navbar extends React.Component {
     }
   }
 
+  // no me funcionaba el boton de log out desde favoritos y resultados de busqueda, sin entender por que
+  // busqué y encontre que a las cookies se les setea tambien un path, y que si no se lo seteas, por algun motivo, desde algunas screens, no se borra la cookie al hacer logout, por eso el boton de log out no funcionaba en esas pantallas
+  // entonces lo agregue. se que no lo vimos en clase, no se si otros grupos tenían el mismo problema que yo, o si lo resolvieron distinto, o no lo resolvieron, pero no quería dejar de hacer un comentario al respecto.
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      const loggedUser = cookies.get("loggedUser");
+      this.setState({ isLoggedIn: !!loggedUser });
+    }
+  }
+
   logout(e) {
     e.preventDefault();
-    cookies.remove("loggedUser");
+    // comentario sobre path en cookies en la linea 26
+    cookies.remove("loggedUser", { path: "/" });
     this.setState({ isLoggedIn: false });
     this.props.history.push("/");
   }
