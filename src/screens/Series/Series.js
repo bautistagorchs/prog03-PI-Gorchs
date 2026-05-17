@@ -1,32 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AiringToday from "../../components/AiringToday/AiringToday";
 import "./Series.css";
 import TopRated from "../../components/TopRated/TopRated";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
-class Series extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedIn: false,
-    };
-  }
-  componentDidMount() {
-    const loggedUser = cookies.get("loggedUser");
 
+function Series(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loggedUser = cookies.get("loggedUser");
     if (loggedUser) {
-      this.setState({ isLoggedIn: true });
+      setIsLoggedIn(true);
     }
-  }
-  render() {
-    return (
-      <main className="series-screen">
-        <AiringToday loggedIn={this.state.isLoggedIn} />
-        <TopRated loggedIn={this.state.isLoggedIn} />
-      </main>
-    );
-  }
+  }, []);
+
+  return (
+    <main className="series-screen">
+      <AiringToday loggedIn={isLoggedIn} />
+      <TopRated loggedIn={isLoggedIn} />
+    </main>
+  );
 }
 
 export default Series;

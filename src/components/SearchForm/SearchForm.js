@@ -1,52 +1,38 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./SearchForm.css";
 
-class SearchForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchValue: "",
-      mediaType: "movie",
-    };
-  }
+function SearchForm(props) {
+  const [searchValue, setSearchValue] = useState("");
+  const [mediaType, setMediaType] = useState("movie");
 
-  updateInputValues(e) {
-    this.setState({ searchValue: e.target.value });
-  }
-
-  updateSelectOptions(e) {
-    this.setState({ mediaType: e.target.value });
-  }
-  render() {
-    return (
-      <div className="search-container">
-        <form
-          action={`/search-results/${this.state.searchValue}/${this.state.mediaType}`}
-          className="search-form"
+  return (
+    <div className="search-container">
+      <form
+        action={`/search-results/${searchValue}/${mediaType}`}
+        className="search-form"
+      >
+        <input
+          className="search-input"
+          name="value"
+          id="name"
+          placeholder="Search movie, show or person"
+          value={searchValue}
+          onChangeCapture={(e) => setSearchValue(e.target.value)}
+        />
+        <select
+          className="media-select"
+          name="mediaType"
+          id="mediaType"
+          onChange={(e) => setMediaType(e.target.value)}
         >
-          <input
-            className="search-input"
-            name="value"
-            id="name"
-            placeholder="Search movie, show or person"
-            value={this.state.searchValue}
-            onChangeCapture={(e) => this.updateInputValues(e)}
-          />
-          <select
-            className="media-select"
-            name="mediaType"
-            id="mediaType"
-            onChange={(e) => this.updateSelectOptions(e)}
-          >
-            <option value="movie">Movie</option>
-            <option value="tv">TV Show</option>
-            <option value="multi">All</option>
-          </select>
-          <button className="search-submit">Search</button>
-        </form>
-      </div>
-    );
-  }
+          <option value="movie">Movie</option>
+          <option value="tv">TV Show</option>
+          <option value="multi">All</option>
+        </select>
+        <button className="search-submit">Search</button>
+      </form>
+    </div>
+  );
 }
 
 export default SearchForm;

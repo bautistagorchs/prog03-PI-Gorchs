@@ -74,6 +74,14 @@
   background-color: #123b93;
 }
 
+a.goToLogin {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: #0e3fa9;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 500px) {
   .register-card {
     padding: 1.4rem;

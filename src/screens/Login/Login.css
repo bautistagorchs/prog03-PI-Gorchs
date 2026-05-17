@@ -61,7 +61,7 @@
 
 .login-form button {
   height: 44px;
-  margin-top: 0.8rem;
+  margin: 0.8rem 0;
   font-size: 19px;
   font-weight: 600;
   color: #ffaa07;
@@ -73,6 +73,14 @@
 
 .login-form button:hover {
   background-color: #123b93;
+}
+
+a.goToRegister {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: #0e3fa9;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 500px) {

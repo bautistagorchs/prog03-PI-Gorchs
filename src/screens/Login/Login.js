@@ -1,33 +1,31 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
 const cookies = new Cookies();
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
 
-  componentDidMount() {
+function Login(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
     const loggedUser = cookies.get("loggedUser");
-
     if (loggedUser) {
-      this.props.history.push("/");
+      props.history.push("/");
     }
-  }
+  }, [props]);
 
-  updateValues(e, field) {
-    this.setState({ [field]: e.target.value });
-  }
+  const updateValues = (e, field) => {
+    if (field === "email") {
+      setEmail(e.target.value);
+    } else if (field === "password") {
+      setPassword(e.target.value);
+    }
+  };
 
-  submit(e) {
+  const submit = (e) => {
     e.preventDefault();
-
-    const { email, password } = this.state;
 
     if (!email || !password) {
       alert("Por favor, completa todos los campos.");
@@ -37,54 +35,56 @@ class Login extends Component {
     const users = JSON.parse(localStorage.getItem("users"));
 
     if (users !== null) {
-      // users existe
       const userExists = users.filter((user) => user.email === email);
 
       if (userExists.length > 0) {
         const passwordsMatch = password === userExists[0].password;
 
         if (passwordsMatch) {
-          // comentario sobre el seteo de path en cookies en la linea 26 del archivo Navbar.js
           cookies.set("loggedUser", email, { path: "/" });
-          this.props.history.push("/");
-        } else return alert("La contraseña es incorrecta");
+          props.history.push("/");
+        } else {
+          alert("La contraseña es incorrecta");
+        }
       } else {
-        alert("No hay ningún usuario registrado con esa direccion de correo ");
+        alert("No hay ningún usuario registrado con esa direccion de correo");
       }
     } else {
       alert("No hay usuarios registrados");
-      this.props.history.push("/register");
+      props.history.push("/register");
     }
-  }
+  };
 
-  render() {
-    return (
-      <main className="login-screen">
-        <section className="login-card">
-          <h1>Iniciar sesión</h1>
-          <p>Ingresá tus datos para acceder a tu cuenta de Blockbuster.</p>
+  return (
+    <main className="login-screen">
+      <section className="login-card">
+        <h1>Iniciar sesión</h1>
+        <p>Ingresá tus datos para acceder a tu cuenta de Blockbuster.</p>
 
-          <form className="login-form" onSubmit={(e) => this.submit(e)}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="email@example.com"
-              onChange={(e) => this.updateValues(e, "email")}
-            />
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="***********"
-              onChange={(e) => this.updateValues(e, "password")}
-            />
+        <form className="login-form" onSubmit={(e) => submit(e)}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="email@example.com"
+            onChange={(e) => updateValues(e, "email")}
+          />
+          <label htmlFor="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="***********"
+            onChange={(e) => updateValues(e, "password")}
+          />
 
-            <button type="submit">Login</button>
-          </form>
-        </section>
-      </main>
-    );
-  }
+          <button type="submit">Login</button>
+        </form>
+        <Link className="goToRegister" to="/register">
+          No tienes una cuenta? Regístrate aquí
+        </Link>
+      </section>
+    </main>
+  );
 }
+
 export default Login;
