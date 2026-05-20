@@ -28,7 +28,7 @@ function SearchResults(props) {
         setLoading(false);
       })
       .catch((err) => console.error(err));
-  }, [props]);
+  });
 
   return (
     <div className="search-results-container">

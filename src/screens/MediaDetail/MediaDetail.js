@@ -38,7 +38,7 @@ function MediaDetail(props) {
     if (loggedUser) {
       setIsLoggedIn(true);
     }
-  }, [props]);
+  });
 
   const toggleFavourite = (id, mediaType) => {
     const favourites = localStorage.getItem("favourite_" + mediaType);
